@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <span class="title">TitlePage</span>
+    <span class="space"></span>
+    <mat-slide-toggle mat-button color="accent" [checked]="dark" (change)="themeSelector()">
+        <fa-icon *ngIf="dark" [icon]="icons.solid.faSun"></fa-icon>
+        <fa-icon *ngIf="!dark" [icon]="icons.solid.faMoon"></fa-icon>
+    </mat-slide-toggle>
+    <a mat-button [routerLink]="['/']" routerLinkActive="active">
+        <fa-icon [icon]="icons.solid.faHome" size="2x"></fa-icon>
+    </a>
+    <a mat-button [routerLink]="['/projects']" routerLinkActive="active">
+        <fa-icon [icon]="icons.solid.faProjectDiagram" size="2x"></fa-icon>
+    </a>
+</mat-toolbar>

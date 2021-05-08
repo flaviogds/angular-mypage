@@ -1,0 +1,30 @@
+$widthUnit: calc(100% / 7);
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .footer-logo,
+  .footer-links,
+  .footer-copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-logo {
+    width: calc(#{$widthUnit} * 2);
+  }
+
+  .footer-links {
+    width: calc(#{$widthUnit} * 3);
+  }
+
+  .footer-copyright {
+    width: calc(#{$widthUnit} * 2);
+    word-wrap: break-word;
+    font-size: smaller;
+  }
+}

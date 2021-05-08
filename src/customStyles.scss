@@ -1,0 +1,78 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+$warn: mat-palette($mat-red);
+$fullSize: calc(100%);
+$footer-height: 6.5rem;
+
+$my-page-theme-light: mat-light-theme(
+  (
+    color: (
+      primary: mat-palette($mat-purple, 900),
+      accent: mat-palette($mat-green, A200, A100, A400),
+      warn: $warn,
+    ),
+  )
+);
+
+$my-page-theme-dark: mat-dark-theme(
+  (
+    color: (
+      primary: mat-palette($mat-grey, 900),
+      accent: mat-palette($mat-blue-grey, A200, A100, A400),
+      warn: $warn,
+    ),
+  )
+);
+
+@mixin my-app-container() {
+  .container {
+    min-height: calc(
+      #{$fullSize} - #{$mat-toolbar-height-desktop} - #{$footer-height}
+    );
+
+    @media ($mat-xsmall) {
+      min-height: calc(
+        #{$fullSize} - #{$mat-toolbar-height-mobile} - #{$footer-height}
+      );
+    }
+  }
+}
+
+@mixin my-footer($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+
+  .footer-container {
+    height: $footer-height;
+    padding: 0 16px;
+    background-color: mat-color($primary);
+    border-color: mat-color($accent, A400);
+    color: mat-color($primary, "900-contrast");
+  }
+}
+
+@mixin my-footer-typography($config-or-theme) {
+  $config: mat-get-typography-config($config-or-theme);
+
+  .footer-container {
+    font: {
+      family: mat-font-family($config, body-1);
+      size: mat-font-size($config, body-1);
+      weight: mat-font-weight($config, body-1);
+    }
+  }
+}
+
+@mixin my-footer-theme($theme) {
+  $color: mat-get-color-config($theme);
+  $typography: mat-get-typography-config($theme);
+
+  @if $color != null {
+    @include my-footer($color);
+  }
+  @if $typography != null {
+    @include my-footer-typography($typography);
+  }
+}
